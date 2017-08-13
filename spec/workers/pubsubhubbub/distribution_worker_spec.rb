@@ -42,4 +42,14 @@ describe Pubsubhubbub::DistributionWorker do
       expect(Pubsubhubbub::DeliveryWorker).to_not have_received(:push_bulk)
     end
   end
+
+  describe 'with domestic status' do
+    let(:status) { Fabricate(:status, account: alice, text: 'Hello', visibility: :domestic) }
+
+    it 'does not deliver payload' do
+      allow(Pubsubhubbub::DeliveryWorker).to receive(:push_bulk)
+      subject.perform(status.stream_entry.id)
+      expect(Pubsubhubbub::DeliveryWorker).to_not have_received(:push_bulk)
+    end
+  end
 end

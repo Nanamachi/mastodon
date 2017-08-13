@@ -450,6 +450,7 @@ RSpec.describe Status, type: :model do
     let!(:public_status) { Fabricate(:status, account: target_account, visibility: 'public') }
     let!(:unlisted_status) { Fabricate(:status, account: target_account, visibility: 'unlisted') }
     let!(:private_status) { Fabricate(:status, account: target_account, visibility: 'private') }
+    let!(:domestic_status) { Fabricate(:status, account: target_account, visibility: 'domestic')}
 
     let!(:direct_status) do
       Fabricate(:status, account: target_account, visibility: 'direct').tap do |status|
