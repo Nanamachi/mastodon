@@ -31,7 +31,7 @@ class Status < ApplicationRecord
   include StatusThreadingConcern
   include EmojiHelper
 
-  enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
+  enum visibility: [:public, :unlisted, :private, :direct, :domestic], _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application'
 

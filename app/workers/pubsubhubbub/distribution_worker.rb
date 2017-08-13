@@ -13,7 +13,7 @@ class Pubsubhubbub::DistributionWorker
     @account       = stream_entries.first.account
     @subscriptions = active_subscriptions.to_a
 
-    distribute_public!(stream_entries.reject(&:hidden?))
+    distribute_public!(stream_entries.reject(&:hidden? || &:domestic_visibility?))
     distribute_hidden!(stream_entries.select(&:hidden?))
   end
 
