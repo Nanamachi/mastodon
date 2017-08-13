@@ -2880,6 +2880,11 @@ button.icon-button.active i.fa-retweet {
   overflow: hidden;
 }
 
+.privacy-dropdown__federate {
+  padding: 10px;
+  cursor: pointer;
+}
+
 .privacy-dropdown__option {
   color: $ui-base-color;
   padding: 10px;
