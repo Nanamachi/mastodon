@@ -233,6 +233,14 @@ RSpec.describe Status, type: :model do
       expect(results).not_to include(private_status)
     end
 
+    it 'includes statuses both public and domestic' do
+      public_status = Fabricate(:status, visibility: :public)
+      domestic_status = Fabricate(:status, visibility: :domestic)
+
+      results = Status.as_public_timeline
+      expect(results).to include(public_status, domestic_status)
+    end
+
     it 'does not include replies' do
       status = Fabricate(:status)
       reply = Fabricate(:status, in_reply_to_id: status.id)
