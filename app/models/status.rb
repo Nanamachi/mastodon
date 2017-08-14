@@ -65,7 +65,7 @@ class Status < ApplicationRecord
 
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
-  scope :with_public_visibility, -> { where(visibility: :public) }
+  scope :with_public_visibility, -> { where(visibility: :public, :domestic) }
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
   scope :local_only, -> { left_outer_joins(:account).where(accounts: { domain: nil }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
@@ -133,7 +133,7 @@ class Status < ApplicationRecord
     end
 
     def as_home_timeline(account)
-      where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private])
+      where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private, :domestic])
     end
 
     def as_public_timeline(account = nil, local_only = false)
@@ -193,6 +193,7 @@ class Status < ApplicationRecord
         # followers can see followers-only stuff, but also things they are mentioned in.
         # non-followers can see everything that isn't private/direct, but can see stuff they are mentioned in.
         visibility.push(:private) if account.following?(target_account)
+        visibility.push(:domestic) if account.domain == target_account.domain
 
         joins("LEFT OUTER JOIN mentions ON statuses.id = mentions.status_id AND mentions.account_id = #{account.id}")
           .where(arel_table[:visibility].in(visibility).or(Mention.arel_table[:id].not_eq(nil)))
