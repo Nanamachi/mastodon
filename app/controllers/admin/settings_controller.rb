@@ -13,12 +13,14 @@ module Admin
       closed_registrations_message
       open_deletion
       timeline_preview
+      need_approval
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
       open_registrations
       open_deletion
       timeline_preview
+      need_approval
     ).freeze
 
     def edit
