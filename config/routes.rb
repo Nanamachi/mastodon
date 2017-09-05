@@ -115,6 +115,7 @@ Rails.application.routes.draw do
       resource :silence, only: [:create, :destroy]
       resource :suspension, only: [:create, :destroy]
       resource :confirmation, only: [:create]
+      resource :approval, only: [:create]
       resources :statuses, only: [:index, :create, :update, :destroy]
     end
 
