@@ -187,6 +187,9 @@ ja:
         desc_html: ランディングページに公開タイムラインを表示します
         title: タイムラインプレビュー
       title: サイト設定
+      need_approval:
+        desc_html: アカウント作成時にあなたの許可を求めます
+        title: 登録の制限
     statuses:
       back_to_account: アカウントページに戻る
       batch:

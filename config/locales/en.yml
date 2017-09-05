@@ -190,6 +190,9 @@ en:
         desc_html: Display public timeline on landing page
         title: Timeline preview
       title: Site Settings
+      need_approval:
+        desc_html: Need admins' approval for registration
+        title: Restricted registration
     statuses:
       back_to_account: Back to account page
       batch:
