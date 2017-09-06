@@ -50,6 +50,7 @@ en:
       confirm: Confirm
       confirmed: Confirmed
       approve: Approve
+      approved: Approved
       disable_two_factor_authentication: Disable 2FA
       display_name: Display name
       domain: Domain

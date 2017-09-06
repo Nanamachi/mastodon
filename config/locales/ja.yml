@@ -50,6 +50,7 @@ ja:
       confirm: 確認
       confirmed: 確認済み
       approve: 承認
+      approved: 承認済み
       disable_two_factor_authentication: 二段階認証を無効にする
       display_name: 表示名
       domain: ドメイン
