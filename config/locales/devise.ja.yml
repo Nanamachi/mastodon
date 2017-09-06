@@ -25,6 +25,8 @@ ja:
         subject: 'Mastodon: パスワード再発行'
       unlock_instructions:
         subject: 'Mastodon: アカウントのロックの解除'
+      new_user_waiting_for_approval:
+        subject: 'Mastodon: %{acct}からの承認要求'
     omniauth_callbacks:
       failure: '%{reason}によって%{kind}からのアクセスを認証できませんでした。'
       success: '%{kind}からのアクセスは正常に認証されました。'

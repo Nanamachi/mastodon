@@ -63,6 +63,8 @@ class User < ApplicationRecord
 
   before_validation :sanitize_languages
 
+  after_create :request_approval
+
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
   # handle this itself, and this can be removed from our User class.
@@ -143,6 +145,14 @@ class User < ApplicationRecord
       :not_approved
     else
       super
+    end
+  end
+
+  def request_approval
+    if Setting.need_approval
+      User.admins.each do |admin|
+        UserMailer.new_user_waiting_for_approval(admin, self).deliver_later
+      end
     end
   end
 
