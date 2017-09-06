@@ -151,7 +151,7 @@ class User < ApplicationRecord
   def request_approval
     if Setting.need_approval
       User.admins.each do |admin|
-        UserMailer.new_user_waiting_for_approval(admin, self).deliver_later
+        UserMailer.new_user_waiting_for_approval(admin, self, 'hogehoge').deliver_later
       end
     end
   end

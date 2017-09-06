@@ -22,7 +22,7 @@ class UserMailer < Devise::Mailer
     @instance = Rails.configuration.x.local_domain
 
     I18n.with_locale(@me.locale || I18n.default_locale) do
-      mail to: @me.user_email, subject: I18n.t('devise.mailer.new_user_waiting_for_approval.subject', acct: @resource.account.local_username_and_domain)
+      mail to: @me.email, subject: I18n.t('devise.mailer.new_user_waiting_for_approval.subject', acct: @resource.account.local_username_and_domain)
     end
   end
 
