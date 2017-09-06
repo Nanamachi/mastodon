@@ -134,6 +134,18 @@ class User < ApplicationRecord
     approved_at.present?
   end
 
+  def active_for_authentication?
+    super && (approved? || !Setting.need_approval)
+  end
+
+  def inactive_message
+    if !approved?
+      :not_approved
+    else
+      super
+    end
+  end
+
   protected
 
   def send_devise_notification(notification, *args)
