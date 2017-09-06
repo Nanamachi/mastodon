@@ -6,6 +6,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :check_enabled_registrations, only: [:new, :create]
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
+  before_action :set_instance_presenter, only: [:new, :create]
 
   def destroy
     not_found
@@ -45,5 +46,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_sessions
     @sessions = current_user.session_activations
+  end
+
+  def set_instance_presenter
+    @instance_presenter = InstancePresenter.new
   end
 end
