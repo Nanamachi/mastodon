@@ -141,7 +141,7 @@ class User < ApplicationRecord
   end
 
   def inactive_message
-    if !approved?
+    if (!approved? && Setting.need_approval)
       :not_approved
     else
       super
