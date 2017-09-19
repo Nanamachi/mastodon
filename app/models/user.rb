@@ -156,6 +156,10 @@ class User < ApplicationRecord
     end
   end
 
+  def approve
+    self.update( :updated_at = Time.now )
+  end
+
   protected
 
   def send_devise_notification(notification, *args)
