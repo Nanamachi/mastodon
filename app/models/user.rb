@@ -157,7 +157,7 @@ class User < ApplicationRecord
   end
 
   def approve
-    self.update( :updated_at = Time.now )
+    self.update( approved_at: Time.now )
   end
 
   protected
