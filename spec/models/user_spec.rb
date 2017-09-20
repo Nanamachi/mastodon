@@ -73,7 +73,14 @@ RSpec.describe User, type: :model do
     end
 
     describe 'approved' do
+      around do |example|
+        need_approval = Setting.need_approval
+        example.run
+        Setting.need_approval = need_approval
+      end
+
       it 'returns an array of users who are approved' do
+        Setting.need_approval = true
         user_1 = Fabricate(:user, approved_at: nil)
         user_2 = Fabricate(:user, approved_at: Time.now)
         expect(User.approved).to match_array([user_2])
@@ -200,14 +207,14 @@ RSpec.describe User, type: :model do
   describe '#request_approval' do
     around do |example|
       queue_adapter = ActiveJob::Base.queue_adapter
-      need_approval = Settings.need_approval?
+      need_approval = Setting.need_approval?
       example.run
       ActiveJob::Base.queue_adapter = queue_adapter
-      Settings.need_approval = need_approval
+      Setting.need_approval = need_approval
     end
 
     it 'delivers approval request later when need_approval is true' do
-      Settings.need_approval = true
+      Setting.need_approval = true
       user = Fabricate(:user)
       ActiveJob::Base.queue_adapter = :test
 
@@ -216,7 +223,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'automatically approve instead of requesting approval when need_approval is false' do
-      Settings.need_approval = false
+      Setting.need_approval = false
       user = Fabricate(:user)
       ActiveJob::Base.queue_adapter = :test
 

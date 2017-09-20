@@ -45,7 +45,7 @@ describe UserMailer, type: :mailer do
 
     include_examples 'localized subject',
                      'devise.mailer.new_user_waiting_for_approval.subject',
-                     instance: Rails.configuration.x.local_domain
+                     acct: 'spec'
   end
 
   describe 'reset_password_instructions' do
