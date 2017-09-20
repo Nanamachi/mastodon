@@ -158,7 +158,7 @@ class User < ApplicationRecord
   end
 
   def inactive_message
-    if (!approved? && Setting.need_approval)
+    if !approved? && Setting.need_approval
       :not_approved
     else
       super
@@ -171,12 +171,12 @@ class User < ApplicationRecord
         UserMailer.new_user_waiting_for_approval(admin, self, 'hogehoge').deliver_later
       end
     else
-      self.update( approved_at: Time.now )
+      approve
     end
   end
 
   def approve
-    self.update( approved_at: Time.now )
+    update(approved_at: Time.now.utc)
   end
 
   protected
