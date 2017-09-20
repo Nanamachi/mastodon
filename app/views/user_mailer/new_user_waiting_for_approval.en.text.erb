@@ -1,0 +1,7 @@
+Hello <%= @me.account.username %>.
+
+<%= @resource.account.local_username_and_domain %> wants to create new account
+on your mastodon instance. His/Her email is <%= @resource.email %>.
+
+To approve this account, please click on the following link :
+<%= confirmation_url(@resource, confirmation_token: @token) %>.

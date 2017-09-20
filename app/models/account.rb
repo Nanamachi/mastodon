@@ -111,6 +111,7 @@ class Account < ApplicationRecord
            :current_sign_in_at,
            :confirmed?,
            :admin?,
+           :approved?,
            :locale,
            to: :user,
            prefix: true,
