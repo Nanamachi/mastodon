@@ -153,6 +153,8 @@ class User < ApplicationRecord
       User.admins.each do |admin|
         UserMailer.new_user_waiting_for_approval(admin, self, 'hogehoge').deliver_later
       end
+    else
+      self.update( approved_at: Time.now )
     end
   end
 
