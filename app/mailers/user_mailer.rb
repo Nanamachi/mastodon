@@ -15,10 +15,9 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def new_user_waiting_for_approval(recipient, user, token, _opts = {})
+  def new_user_waiting_for_approval(recipient, user, _opts = {})
     @me       = recipient
     @resource = user
-    @token    = token
     @instance = Rails.configuration.x.local_domain
 
     I18n.with_locale(@me.locale || I18n.default_locale) do

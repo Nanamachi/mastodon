@@ -1,7 +1,7 @@
 <p>こんにちは、<%= @me.account.username %>さん。</p>
 
-<p><%= @resource.account.local_username_and_domain %> があなたのインスタンスに
+<p><%= @resource.account.local_username_and_domain %> が <%= @instance %> に
 アカウントを作成しようとしています。登録されたアドレスは <%= @resource.email %> です。</p>
 
-<p>このアカウントを承認するには、以下のリンクをクリックしてください。 :
-<%= confirmation_url(@resource, confirmation_token: @token) %>.</p>
+<p>
+<%= link_to "こちら", admin_account_url(@resource.account.id) %> から操作を完了してください。</p>
