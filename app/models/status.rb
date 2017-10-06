@@ -65,7 +65,7 @@ class Status < ApplicationRecord
 
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
-  scope :with_public_visibility, -> { where(visibility: :public, :domestic) }
+  scope :with_public_visibility, -> { where(visibility: :public).or(where(visibility: :domestic)) }
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
   scope :local_only, -> { left_outer_joins(:account).where(accounts: { domain: nil }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
