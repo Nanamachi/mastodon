@@ -38,7 +38,7 @@ module Mastodon
 
     # specify git tag or commit hash here
     def source_tag
-      c2bdon
+      'c2bdon'
     end
 
     def source_url
