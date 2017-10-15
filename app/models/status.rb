@@ -23,6 +23,7 @@
 #  language               :string
 #  conversation_id        :integer
 #  local                  :boolean
+#  federate               :boolean          default(TRUE), not null
 #
 
 class Status < ApplicationRecord
@@ -31,7 +32,7 @@ class Status < ApplicationRecord
   include Cacheable
   include StatusThreadingConcern
 
-  enum visibility: [:public, :unlisted, :private, :direct, :domestic], _suffix: :visibility
+  enum visibility: [:public, :unlisted, :private, :direct], _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application'
 
@@ -67,7 +68,7 @@ class Status < ApplicationRecord
 
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
-  scope :with_public_visibility, -> { where(visibility: :public).or(where(visibility: :domestic)) }
+  scope :with_public_visibility, -> { where(visibility: :public) }
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: false }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced: true }) }
@@ -151,7 +152,7 @@ class Status < ApplicationRecord
     end
 
     def as_home_timeline(account)
-      where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private, :domestic])
+      where(account: [account] + account.following).where(visibility: [:public, :unlisted, :private])
     end
 
     def as_public_timeline(account = nil, local_only = false)
@@ -210,7 +211,7 @@ class Status < ApplicationRecord
       visibility = [:public, :unlisted]
 
       if account.nil?
-        where(visibility: visibility)
+        where(visibility: visibility, federate: true)
       elsif target_account.blocking?(account) # get rid of blocked peeps
         none
       elsif account.id == target_account.id # author can see own stuff
@@ -219,7 +220,6 @@ class Status < ApplicationRecord
         # followers can see followers-only stuff, but also things they are mentioned in.
         # non-followers can see everything that isn't private/direct, but can see stuff they are mentioned in.
         visibility.push(:private) if account.following?(target_account)
-        visibility.push(:domestic) if account.domain == target_account.domain
 
         where(visibility: visibility).or(where(id: account.mentions.select(:status_id)))
       end
