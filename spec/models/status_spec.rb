@@ -242,14 +242,6 @@ RSpec.describe Status, type: :model do
       expect(results).not_to include(private_status)
     end
 
-    it 'includes statuses both public and domestic' do
-      public_status = Fabricate(:status, visibility: :public)
-      domestic_status = Fabricate(:status, visibility: :domestic)
-
-      results = Status.as_public_timeline
-      expect(results).to include(public_status, domestic_status)
-    end
-
     it 'does not include replies' do
       status = Fabricate(:status)
       reply = Fabricate(:status, in_reply_to_id: status.id)
@@ -467,7 +459,6 @@ RSpec.describe Status, type: :model do
     let!(:public_status) { Fabricate(:status, account: target_account, visibility: 'public') }
     let!(:unlisted_status) { Fabricate(:status, account: target_account, visibility: 'unlisted') }
     let!(:private_status) { Fabricate(:status, account: target_account, visibility: 'private') }
-    let!(:domestic_status) { Fabricate(:status, account: target_account, visibility: 'domestic')}
 
     let!(:direct_status) do
       Fabricate(:status, account: target_account, visibility: 'direct').tap do |status|
