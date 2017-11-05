@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, defineMessages } from 'react-intl';
+import ImmutablePropTypes from 'react-immutable-proptypes'
+import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import SettingToggle from '../../notifications/components/setting_toggle';
 import Overlay from 'react-overlays/lib/Overlay';
@@ -29,6 +30,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
     style: PropTypes.object,
     items: PropTypes.array.isRequired,
     value: PropTypes.string.isRequired,
+    settings: ImmutablePropTypes.map.isRequired,
     onClose: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
   };
@@ -67,13 +69,15 @@ class PrivacyDropdownMenu extends React.PureComponent {
   }
 
   render () {
-    const { style, items, value } = this.props;
+    const { style, items, value, settings } = this.props;
 
     return (
       <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
         {({ opacity, scaleX, scaleY }) => (
           <div className='privacy-dropdown__dropdown' style={{ ...style, opacity: opacity, transform: `scale(${scaleX}, ${scaleY})` }} ref={this.setRef}>
-            <SettingToggle prefix='privacy-dropdown_federate' settings={settings} settingKey={['true', 'false']} onChange={onChange} label={showStr} />
+            <div className='privacy-dropdown__federate'>
+              <SettingToggle className='privacy-dropdown__federate' prefix='privacy-dropdown' settings={settings} settingKey={['compose', 'federate']} onChange={this.onChange} label={<FormattedMessage id='privacy.federate' defaultMessage='Deliver to other instances' />} />
+            </div>
             {items.map(item =>
               <div role='button' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleClick} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })}>
                 <div className='privacy-dropdown__option__icon'>
@@ -102,6 +106,7 @@ export default class PrivacyDropdown extends React.PureComponent {
     isModalOpen: PropTypes.bool.isRequired,
     onModalOpen: PropTypes.func,
     onModalClose: PropTypes.func,
+    settings: ImmutablePropTypes.map.isRequired,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -166,7 +171,7 @@ export default class PrivacyDropdown extends React.PureComponent {
   }
 
   render () {
-    const { value, intl } = this.props;
+    const { value, intl, settings } = this.props;
     const { open } = this.state;
 
     const valueOption = this.options.find(item => item.value === value);
@@ -191,6 +196,7 @@ export default class PrivacyDropdown extends React.PureComponent {
           <PrivacyDropdownMenu
             items={this.options}
             value={value}
+            settings={settings}
             onClose={this.handleClose}
             onChange={this.handleChange}
           />
