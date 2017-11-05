@@ -1,13 +1,8 @@
 ---
 sv:
   about:
-<<<<<<< HEAD
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post
     about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
-=======
-    about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
-    about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post
->>>>>>> upstream/master
     about_this: Om
     closed_registrations: Registreringar är för närvarande stängda i denna instans. Dock så kan du hitta en annan instans för att skapa ett konto och få tillgång till samma nätverk från det.
     contact: Kontakt
@@ -55,16 +50,6 @@ sv:
       admin: Admin
     unfollow: Sluta följa
   admin:
-<<<<<<< HEAD
-=======
-    account_moderation_notes:
-      account: Moderator
-      create: Skapa
-      created_at: Datum
-      created_msg: Modereringsnotering skapad utan problem!
-      delete: Ta bort
-      destroyed_msg: Modereringsnotering borttagen utan problem!
->>>>>>> upstream/master
     accounts:
       are_you_sure: Är du säker?
       confirm: Bekräfta
@@ -125,7 +110,6 @@ sv:
       unsubscribe: Säga upp
       username: Användarnamn
       web: Webb
-<<<<<<< HEAD
 
     account_moderation_notes:
       account: Moderator
@@ -135,8 +119,6 @@ sv:
       delete: Ta bort
       destroyed_msg: Modereringsnotering borttagen utan problem!
 
-=======
->>>>>>> upstream/master
     custom_emojis:
       copied_msg: Skapade en lokal kopia av emoji utan problem
       copy: Kopia
@@ -171,20 +153,12 @@ sv:
           suspend: Suspendera
         title: Nytt domänblock
       reject_media: Avvisa mediafiler
-<<<<<<< HEAD
       reject_media_hint: Ta bort lokalt lagrade mediefiler och tar bor möjligheten att ladda ner någon i framtiden. Irrelevant för suspensioner
-=======
-      reject_media_hint: Ta bort lokalt lagrade mediefiler och tar bort möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
->>>>>>> upstream/master
       severities:
         noop: Ingen
         silence: Tystnad
         suspend: Suspendera
-<<<<<<< HEAD
       severity: Strikthet
-=======
-      severity: Svårighet
->>>>>>> upstream/master
       show:
         affected_accounts:
           one: Ett konto i databasen drabbades

@@ -20,29 +20,20 @@ RSpec.describe MediaAttachment, type: :model do
   end
 
   describe 'non-animated gif non-conversion' do
-    fixtures = [
-      { filename: 'attachment.gif', width: 600, height: 400, aspect: 1.5 },
-      { filename: 'mini-static.gif', width: 32, height: 32, aspect: 1.0 },
-    ]
+    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('attachment.gif')) }
 
-    fixtures.each do |fixture|
-      context fixture[:filename] do
-        let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture(fixture[:filename])) }
+    it 'sets type to image' do
+      expect(media.type).to eq 'image'
+    end
 
-        it 'sets type to image' do
-          expect(media.type).to eq 'image'
-        end
+    it 'leaves original file as-is' do
+      expect(media.file_content_type).to eq 'image/gif'
+    end
 
-        it 'leaves original file as-is' do
-          expect(media.file_content_type).to eq 'image/gif'
-        end
-
-        it 'sets meta' do
-          expect(media.file.meta["original"]["width"]).to eq fixture[:width]
-          expect(media.file.meta["original"]["height"]).to eq fixture[:height]
-          expect(media.file.meta["original"]["aspect"]).to eq fixture[:aspect]
-        end
-      end
+    it 'sets meta' do
+      expect(media.file.meta["original"]["width"]).to eq 600
+      expect(media.file.meta["original"]["height"]).to eq 400
+      expect(media.file.meta["original"]["aspect"]).to eq 1.5
     end
   end
 

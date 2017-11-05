@@ -1,8 +1,8 @@
 ---
 oc:
   about:
-    about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
+    about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
     about_this: A prepaus d’aquesta instància
     closed_registrations: Las inscripcions son clavadas pel moment sus aquesta instància.
     contact: Contacte
@@ -50,16 +50,8 @@ oc:
       admin: Admin
     unfollow: Quitar de sègre
   admin:
-    account_moderation_notes:
-      account: Moderator
-      create: Crear
-      created_at: Data
-      created_msg: Nòta de moderacion ben creada !
-      delete: Suprimir
-      destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
       are_you_sure: Sètz segur ?
-      by_domain: Domeni
       confirm: Confirmar
       confirmed: Confirmat
       disable_two_factor_authentication: Desactivar 2FA
@@ -118,7 +110,6 @@ oc:
       unsubscribe: Se desabonar
       username: Nom d’utilizaire
       web: Web
-<<<<<<< HEAD
 
     account_moderation_notes:
       account: Moderator
@@ -128,8 +119,6 @@ oc:
       delete: Suprimir
       destroyed_msg: Nòta de moderacion ben suprimida !
 
-=======
->>>>>>> upstream/master
     custom_emojis:
       copied_msg: Còpia locala de l’emoji ben creada
       copy: Copiar
@@ -143,15 +132,11 @@ oc:
       enable: Activar
       enabled_msg: Aqueste emoji es ben activat
       image_hint: PNG cap a 50Ko
-      listed: Listat
       new:
         title: Ajustar un nòu emoji personal
       shortcode: Acorchi
       shortcode_hint: Almens 2 caractèrs, solament alfanumerics e jonhent bas
       title: Emojis personals
-      unlisted: Pas listat
-      update_failed_msg: Mesa a jorn de l’emoji fracasada
-      updated_msg: Emoji ben mes a jorn !
       upload: Enviar
     domain_blocks:
       add_new: N’ajustar un nòu
@@ -186,15 +171,15 @@ oc:
       title: Blòc de domeni
       undo: Restablir
     email_domain_blocks:
-      add_new: Ajustar
-      created_msg: Blocatge del domeni de corrièl ben plaçat
-      delete: Suprimir
-      destroyed_msg: Blocatge del domeni de corrièl ben levat
-      domain: Domeni
-      new:
-        create: Crear un blocatge
-        title: Nòu blocatge de domeni de corrièl
-      title: Blocatge de domeni de corrièl
+       add_new: Ajustar
+       created_msg: Blocatge del domeni de corrièl ben plaçat
+       delete: Suprimir
+       destroyed_msg: Blocatge del domeni de corrièl ben levat
+       domain: Domeni
+       new:
+         create: Crear un blocatge
+         title: Nòu blocatge de domeni de corrièl
+       title: Blocatge de domeni de corrièl      
     instances:
       account_count: Comptes coneguts
       domain_name: Domeni

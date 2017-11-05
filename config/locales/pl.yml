@@ -1,8 +1,8 @@
 ---
 pl:
   about:
-    about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
+    about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
     about_this: O tej instancji
     closed_registrations: Rejestracja na tej instancji jest obecnie zamknięta. Możesz jednak zarejestrować się na innej instancji, uzyskując dostęp do tej samej sieci.
     contact: Kontakt
@@ -50,13 +50,6 @@ pl:
       admin: Administrator
     unfollow: Przestań śledzić
   admin:
-    account_moderation_notes:
-      account: Autor
-      create: Dodaj
-      created_at: Data
-      created_msg: Pomyślnie dodano notatkę moderacyjną!
-      delete: Usuń
-      destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
       are_you_sure: Jesteś tego pewien?
       confirm: Potwierdź
@@ -117,6 +110,13 @@ pl:
       unsubscribe: Przestań subskrybować
       username: Nazwa użytkownika
       web: Sieć
+    account_moderation_notes:
+      account: Autor
+      created_at: Data
+      create: Dodaj
+      created_msg: Pomyślnie dodano notatkę moderacyjną!
+      delete: Usuń
+      destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     custom_emojis:
       copied_msg: Pomyślnie utworzono lokalną kopię emoji
       copy: Kopiuj
@@ -130,15 +130,11 @@ pl:
       enable: Włącz
       enabled_msg: Pomyślnie przywrócono emoji
       image_hint: Plik PNG ważący do 50KB
-      listed: Widoczne
       new:
         title: Dodaj nowe niestandardowe emoji
       shortcode: Shortcode
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
       title: Niestandardowe emoji
-      unlisted: Niewidoczne
-      update_failed_msg: Nie udało się zaktualizować emoji
-      updated_msg: Pomyślnie zaktualizowano emoji
       upload: Wyślij
     domain_blocks:
       add_new: Dodaj nową

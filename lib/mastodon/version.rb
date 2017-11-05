@@ -21,11 +21,7 @@ module Mastodon
     end
 
     def flags
-<<<<<<< HEAD
       'rc3'
-=======
-      ''
->>>>>>> upstream/master
     end
 
     def to_a

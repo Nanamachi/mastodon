@@ -16,6 +16,7 @@ const mapStateToProps = (state, props) => ({
   statusIds: state.getIn(['timelines', `account:${props.params.accountId}`, 'items'], ImmutableList()),
   isLoading: state.getIn(['timelines', `account:${props.params.accountId}`, 'isLoading']),
   hasMore: !!state.getIn(['timelines', `account:${props.params.accountId}`, 'next']),
+  me: state.getIn(['meta', 'me']),
 });
 
 @connect(mapStateToProps)
@@ -27,6 +28,7 @@ export default class AccountTimeline extends ImmutablePureComponent {
     statusIds: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
+    me: PropTypes.string.isRequired,
   };
 
   componentWillMount () {
@@ -48,7 +50,7 @@ export default class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, isLoading, hasMore } = this.props;
+    const { statusIds, isLoading, hasMore, me } = this.props;
 
     if (!statusIds && isLoading) {
       return (
@@ -68,6 +70,7 @@ export default class AccountTimeline extends ImmutablePureComponent {
           statusIds={statusIds}
           isLoading={isLoading}
           hasMore={hasMore}
+          me={me}
           onScrollToBottom={this.handleScrollToBottom}
         />
       </Column>
