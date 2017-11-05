@@ -105,6 +105,7 @@ export function submitCompose() {
       media_ids: getState().getIn(['compose', 'media_attachments']).map(item => item.get('id')),
       sensitive: getState().getIn(['compose', 'sensitive']),
       spoiler_text: getState().getIn(['compose', 'spoiler_text'], ''),
+      federate: getState().getIn(['compose', 'federate']),
       visibility: getState().getIn(['compose', 'privacy']),
     }, {
       headers: {
