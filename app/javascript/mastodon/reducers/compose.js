@@ -38,6 +38,7 @@ const initialState = ImmutableMap({
   sensitive: false,
   spoiler: false,
   spoiler_text: '',
+  federate: true,
   privacy: null,
   text: '',
   focusDate: null,
@@ -50,6 +51,7 @@ const initialState = ImmutableMap({
   media_attachments: ImmutableList(),
   suggestion_token: null,
   suggestions: ImmutableList(),
+  default_federate: true,
   default_privacy: 'public',
   default_sensitive: false,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
@@ -73,6 +75,7 @@ function clearAll(state) {
     map.set('spoiler_text', '');
     map.set('is_submitting', false);
     map.set('in_reply_to', null);
+    map.set('federate', state.get('default_federate'));
     map.set('privacy', state.get('default_privacy'));
     map.set('sensitive', false);
     map.update('media_attachments', list => list.clear());
@@ -188,6 +191,7 @@ export default function compose(state = initialState, action) {
       .set('idempotencyKey', uuid());
   case COMPOSE_VISIBILITY_CHANGE:
     return state
+      .set('federate', action.settings)
       .set('privacy', action.value)
       .set('idempotencyKey', uuid());
   case COMPOSE_CHANGE:
@@ -200,6 +204,7 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));
       map.set('text', statusToTextMentions(state, action.status));
+      map.set('federate', action.status.get('federate') && state.get('default_federate'));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
       map.set('focusDate', new Date());
       map.set('preselectDate', new Date());
@@ -220,6 +225,7 @@ export default function compose(state = initialState, action) {
       map.set('text', '');
       map.set('spoiler', false);
       map.set('spoiler_text', '');
+      map.set('federate', state.get('default_federate'));
       map.set('privacy', state.get('default_privacy'));
       map.set('idempotencyKey', uuid());
     });
