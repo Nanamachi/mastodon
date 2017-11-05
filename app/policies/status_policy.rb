@@ -52,7 +52,7 @@ class StatusPolicy
     status.federate?
   end
 
-  def blocked?()
-    status.account.blocking?(account))
+  def blocked?
+    status.account.blocking?(account)
   end
 end
