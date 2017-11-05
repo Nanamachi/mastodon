@@ -12,7 +12,11 @@
   "account.mute": "Tysta @{name}",
   "account.posts": "Inlägg",
   "account.report": "Rapportera @{name}",
+<<<<<<< HEAD
   "account.requested": "Inväntar godkännande. Klicka för att avbryta följarförfrågan",
+=======
+  "account.requested": "Inväntar godkännande. Klicka för att avbryta följförfrågan",
+>>>>>>> upstream/master
   "account.share": "Dela @{name}'s profil",
   "account.unblock": "Avblockera @{name}",
   "account.unblock_domain": "Ta fram {domain}",
@@ -90,13 +94,22 @@
   "follow_request.reject": "Avvisa",
   "getting_started.appsshort": "Appar",
   "getting_started.faq": "FAQ",
+<<<<<<< HEAD
   "getting_started.heading": "Komma igång",
   "getting_started.open_source_notice": "Mastodon är öppen källkod programvara. Du kan bidra eller rapportera problem på GitHub på {github}.",
+=======
+  "getting_started.heading": "Kom igång",
+  "getting_started.open_source_notice": "Mastodon är programvara med öppen källkod. Du kan bidra eller rapportera problem på GitHub på {github}.",
+>>>>>>> upstream/master
   "getting_started.userguide": "Användarguide",
   "home.column_settings.advanced": "Avancerad",
   "home.column_settings.basic": "Grundläggande",
   "home.column_settings.filter_regex": "Filtrera ut med regelbundna uttryck",
+<<<<<<< HEAD
   "home.column_settings.show_reblogs": "Vsa boosts",
+=======
+  "home.column_settings.show_reblogs": "Visa knuffar",
+>>>>>>> upstream/master
   "home.column_settings.show_replies": "Visa svar",
   "home.settings": "Kolumninställningar",
   "lightbox.close": "Stäng",
@@ -109,17 +122,31 @@
   "navigation_bar.community_timeline": "Lokal tidslinje",
   "navigation_bar.edit_profile": "Redigera profil",
   "navigation_bar.favourites": "Favoriter",
+<<<<<<< HEAD
   "navigation_bar.follow_requests": "Följa förfrågningar",
+=======
+  "navigation_bar.follow_requests": "Följförfrågningar",
+>>>>>>> upstream/master
   "navigation_bar.info": "Om denna instans",
   "navigation_bar.logout": "Logga ut",
   "navigation_bar.mutes": "Tystade användare",
   "navigation_bar.pins": "Nålade inlägg (toots)",
+<<<<<<< HEAD
   "navigation_bar.preferences": "Företrädare",
   "navigation_bar.public_timeline": "Förenade tidslinje",
   "notification.favourite": "{name} favoriserade din status",
   "notification.follow": "{name} följer dig",
   "notification.mention": "{name} nämnde dig",
   "notification.reblog": "{name} boostade din status",
+=======
+
+  "navigation_bar.preferences": "Inställningar",
+  "navigation_bar.public_timeline": "Förenad tidslinje",
+  "notification.favourite": "{name} favoriserade din status",
+  "notification.follow": "{name} följer dig",
+  "notification.mention": "{name} nämnde dig",
+  "notification.reblog": "{name} knuffade din status",
+>>>>>>> upstream/master
   "notifications.clear": "Rensa meddelanden",
   "notifications.clear_confirmation": "Är du säker på att du vill radera alla dina meddelanden permanent?",
   "notifications.column_settings.alert": "Skrivbordsmeddelanden",
@@ -128,15 +155,26 @@
   "notifications.column_settings.mention": "Omnämningar:",
   "notifications.column_settings.push": "Push meddelanden",
   "notifications.column_settings.push_meta": "Denna anordning",
+<<<<<<< HEAD
   "notifications.column_settings.reblog": "Boostar:",
+=======
+  "notifications.column_settings.reblog": "Knuffar:",
+>>>>>>> upstream/master
   "notifications.column_settings.show": "Visa i kolumnen",
   "notifications.column_settings.sound": "Spela upp ljud",
   "onboarding.done": "Klart",
   "onboarding.next": "Nästa",
+<<<<<<< HEAD
   "onboarding.page_five.public_timelines": "Den lokala tidslinjen visar offentliga inlägg från alla på {domain}. Den förenade tidslinjen visar offentliga inlägg från alla personer på {domain} som följer. Det här är de offentliga tidslinjerna, och ett bra sätt att upptäcka nya människor.",
   "onboarding.page_four.home": "Hemmatidslinjen visar inlägg från personer du följer.",
   "onboarding.page_four.notifications": "Meddelandekolumnen visar när någon interagerar med dig.",
   "onboarding.page_one.federation": "Mastodon är ett nätverk av oberoende servrar som går med för att skapa ett större socialt nätverk. Vi kallar dessa servrar instanser.",
+=======
+  "onboarding.page_five.public_timelines": "Den lokala tidslinjen visar offentliga inlägg från alla på {domain}. Den förenade tidslinjen visar offentliga inlägg från alla personer på {domain} som följer. Dom här offentliga tidslinjerna är ett bra sätt att upptäcka nya människor.",
+  "onboarding.page_four.home": "Hemmatidslinjen visar inlägg från personer du följer.",
+  "onboarding.page_four.notifications": "Meddelandekolumnen visar när någon interagerar med dig.",
+  "onboarding.page_one.federation": "Mastodon är ett nätverk av oberoende servrar som ansluter för att skapa ett större socialt nätverk. Vi kallar dessa servrar instanser.",
+>>>>>>> upstream/master
   "onboarding.page_one.handle": "Du är på {domain}, så din fulla hantering är {handle}",
   "onboarding.page_one.welcome": "Välkommen till Mastodon!",
   "onboarding.page_six.admin": "Din instansadmin är {admin}.",
@@ -172,7 +210,11 @@
   "search_popout.tips.user": "användare",
   "search_results.total": "{count, number} {count, plural, ett {result} andra {results}}",
   "standalone.public_title": "En titt inuti...",
+<<<<<<< HEAD
   "status.cannot_reblog": "Detta inlägg kan inte bli boostat",
+=======
+  "status.cannot_reblog": "Detta inlägg kan inte knuffas",
+>>>>>>> upstream/master
   "status.delete": "Ta bort",
   "status.embed": "Bädda in",
   "status.favourite": "Favorit",
@@ -182,8 +224,13 @@
   "status.mute_conversation": "Tysta konversation",
   "status.open": "Utvidga denna status",
   "status.pin": "Fäst i profil",
+<<<<<<< HEAD
   "status.reblog": "Boost",
   "status.reblogged_by": "{name} boostade",
+=======
+  "status.reblog": "Knuff",
+  "status.reblogged_by": "{name} knuffade",
+>>>>>>> upstream/master
   "status.reply": "Svara",
   "status.replyAll": "Svara på tråden",
   "status.report": "Rapportera @{name}",
@@ -195,7 +242,11 @@
   "status.unmute_conversation": "Öppna konversation",
   "status.unpin": "Ångra fäst i profil",
   "tabs_bar.compose": "Skriv",
+<<<<<<< HEAD
   "tabs_bar.federated_timeline": "Förenade",
+=======
+  "tabs_bar.federated_timeline": "Förenad",
+>>>>>>> upstream/master
   "tabs_bar.home": "Hem",
   "tabs_bar.local_timeline": "Lokal",
   "tabs_bar.notifications": "Meddelanden",

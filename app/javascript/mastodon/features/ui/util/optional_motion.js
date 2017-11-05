@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Like react-motion's Motion, but checks to see if the user prefers
 // reduced motion and uses a cross-fade in those cases.
 
@@ -54,3 +55,10 @@ class OptionalMotion extends React.Component {
 
 
 export default OptionalMotion;
+=======
+import { reduceMotion } from '../../../initial_state';
+import ReducedMotion from './reduced_motion';
+import Motion from 'react-motion/lib/Motion';
+
+export default reduceMotion ? ReducedMotion : Motion;
+>>>>>>> upstream/master
