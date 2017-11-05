@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import SettingToggle from '../../notifications/components/setting_toggle';
+import PrivacySettingsToggleContainer from '../containers/privacy_settings_toggle_container'
 import Overlay from 'react-overlays/lib/Overlay';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
@@ -75,9 +75,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
       <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
         {({ opacity, scaleX, scaleY }) => (
           <div className='privacy-dropdown__dropdown' style={{ ...style, opacity: opacity, transform: `scale(${scaleX}, ${scaleY})` }} ref={this.setRef}>
-            <div className='privacy-dropdown__federate'>
-              <SettingToggle className='privacy-dropdown__federate' prefix='privacy-dropdown' settings={settings} settingKey={['compose', 'federate']} onChange={this.onChange} label={<FormattedMessage id='privacy.federate' defaultMessage='Deliver to other instances' />} />
-            </div>
+            <PrivacySettingsToggleContainer />
             {items.map(item =>
               <div role='button' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleClick} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })}>
                 <div className='privacy-dropdown__option__icon'>
