@@ -124,7 +124,15 @@ class Status < ApplicationRecord
   end
 
   def hidden?
-    private_visibility? || direct_visibility?
+    private_visibility? || direct_visibility? || !federate?
+  end
+  
+  def federate?
+    if !federate.nil?
+      federate
+    else
+      true
+    end
   end
 
   def non_sensitive_with_media?
