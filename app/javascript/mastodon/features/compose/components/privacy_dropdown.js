@@ -122,6 +122,7 @@ export default class PrivacyDropdown extends React.PureComponent {
         this.props.onModalOpen({
           actions: this.options.map(option => ({ ...option, active: option.value === this.props.value })),
           onClick: this.handleModalActionClick,
+          object: <PrivacySettingsToggleContainer />
         });
       }
     } else {
