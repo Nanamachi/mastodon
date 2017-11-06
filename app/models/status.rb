@@ -23,7 +23,7 @@
 #  account_id             :integer          not null
 #  application_id         :integer
 #  in_reply_to_account_id :integer
-#  federate               :boolean
+#  federate               :boolean          default(TRUE), not null
 #
 
 class Status < ApplicationRecord
