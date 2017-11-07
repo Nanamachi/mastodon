@@ -259,8 +259,8 @@ class Status < ApplicationRecord
     end
 
     def filter_timeline_default(query)
-      query.excluding_silenced_accounts
-      query.excluding_unfederate
+      query = query.excluding_silenced_accounts
+      query = query.excluding_unfederate
     end
 
     def account_silencing_filter(account)
