@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes'
-import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
-import PrivacySettingsToggleContainer from '../containers/privacy_settings_toggle_container'
+import PrivacySettingsToggleContainer from '../containers/privacy_settings_toggle_container';
 import Overlay from 'react-overlays/lib/Overlay';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
@@ -69,7 +69,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
   }
 
   render () {
-    const { style, items, value, settings } = this.props;
+    const { style, items, value } = this.props;
 
     return (
       <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>

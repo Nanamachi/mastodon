@@ -60,7 +60,7 @@ export default class ActionsModal extends ImmutablePureComponent {
         <StatusContent status={this.props.status} />
       </div>
     );
-    const object=this.props.object
+    const object = this.props.object;
 
     return (
       <div className='modal-root__modal actions-modal'>

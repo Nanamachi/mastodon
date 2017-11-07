@@ -1,6 +1,4 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import { defineMessages, injectIntl } from 'react-intl';
 import PrivacySettingsToggle from '../components/privacy_settings_toggle';
 import { changeComposeFederate } from '../../../actions/compose';
 
