@@ -21,6 +21,6 @@ export default class PrivacySettingsToggle extends React.PureComponent {
         <SettingToggle settings={settings} settingKey={['federate']} onChange={onChange} label={federateStr} />
       </div>
     );
-
   }
+
 }
