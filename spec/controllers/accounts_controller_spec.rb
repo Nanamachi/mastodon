@@ -4,6 +4,7 @@ RSpec.describe AccountsController, type: :controller do
   render_views
 
   let(:alice)  { Fabricate(:account, username: 'alice') }
+  let(:bob)  { Fabricate(:user) }
   let(:eve)  { Fabricate(:user) }
 
   describe 'GET #show' do
@@ -14,6 +15,7 @@ RSpec.describe AccountsController, type: :controller do
     let!(:status5) { Status.create!(account: alice, text: 'Kitsune') }
     let!(:status6) { Status.create!(account: alice, text: 'Neko') }
     let!(:status7) { Status.create!(account: alice, text: 'Tanuki') }
+    let!(:status8) { Status.create!(account: alice, text: 'Local only', federate: false) }
 
     let!(:status_pin1) { StatusPin.create!(account: alice, status: status5, created_at: 5.days.ago) }
     let!(:status_pin2) { StatusPin.create!(account: alice, status: status6, created_at: 2.years.ago) }
@@ -70,12 +72,21 @@ RSpec.describe AccountsController, type: :controller do
         include_examples 'responsed streams'
       end
 
-      context 'with max_id and since_id' do
-        let(:max_id) { status4.stream_entry.id }
-        let(:since_id) { status1.stream_entry.id }
-        let(:expected_statuses) { [status3, status2] }
+      context 'with anonymous visitor' do
+        context 'with max_id and since_id' do
+          let(:max_id) { status4.stream_entry.id }
+          let(:since_id) { status1.stream_entry.id }
+          let(:expected_statuses) { [status3, status2] }
 
-        include_examples 'responsed streams'
+          include_examples 'responsed streams'
+        end
+
+        context 'without since_id nor max_id' do
+          let(:expected_statuses) { [status7, status6, status5, status4, status3, status2, status1] }
+          let(:expected_pinned_statuses) { [status7, status5, status6] }
+
+          include_examples 'responsed streams'
+        end
       end
     end
 
@@ -123,6 +134,17 @@ RSpec.describe AccountsController, type: :controller do
           let(:since_id) { status1.id }
           let(:expected_statuses) { [status3, status2] }
           let(:expected_pinned_statuses) { [] }
+
+          include_examples 'responsed statuses'
+        end
+      end
+
+      context 'with local visitor' do
+        let(:current_user) { bob }
+
+        context 'without since_id nor max_id' do
+          let(:expected_statuses) { [status8, status7, status6, status5, status4, status3, status2, status1] }
+          let(:expected_pinned_statuses) { [status7, status5, status6] }
 
           include_examples 'responsed statuses'
         end
