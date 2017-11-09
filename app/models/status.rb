@@ -129,11 +129,7 @@ class Status < ApplicationRecord
   end
 
   def federate?
-    if !federate.nil?
-      federate
-    else
-      true
-    end
+    federate
   end
 
   def non_sensitive_with_media?
