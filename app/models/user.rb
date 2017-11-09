@@ -80,10 +80,6 @@ class User < ApplicationRecord
     save!
   end
 
-  def setting_default_federate
-    settings.default_federate
-  end
-
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
   end
