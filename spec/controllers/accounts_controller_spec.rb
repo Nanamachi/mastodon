@@ -42,7 +42,7 @@ RSpec.describe AccountsController, type: :controller do
       end
 
       it 'returns http success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
 
       it 'returns correct format' do
@@ -66,12 +66,6 @@ RSpec.describe AccountsController, type: :controller do
 
       include_examples 'responses'
 
-      context 'without max_id nor since_id' do
-        let(:expected_statuses) { [status7, status6, status5, status4, status3, status2, status1] }
-
-        include_examples 'responsed streams'
-      end
-
       context 'with anonymous visitor' do
         context 'with max_id and since_id' do
           let(:max_id) { status4.stream_entry.id }
@@ -83,7 +77,6 @@ RSpec.describe AccountsController, type: :controller do
 
         context 'without since_id nor max_id' do
           let(:expected_statuses) { [status7, status6, status5, status4, status3, status2, status1] }
-          let(:expected_pinned_statuses) { [status7, status5, status6] }
 
           include_examples 'responsed streams'
         end
@@ -145,6 +138,15 @@ RSpec.describe AccountsController, type: :controller do
         context 'without since_id nor max_id' do
           let(:expected_statuses) { [status8, status7, status6, status5, status4, status3, status2, status1] }
           let(:expected_pinned_statuses) { [status7, status5, status6] }
+
+          include_examples 'responsed statuses'
+        end
+
+        context 'with since_id nor max_id' do
+          let(:max_id) { status4.id }
+          let(:since_id) { status1.id }
+          let(:expected_statuses) { [status3, status2] }
+          let(:expected_pinned_statuses) { [] }
 
           include_examples 'responsed statuses'
         end
