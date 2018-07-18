@@ -331,6 +331,12 @@ ja:
         open:
           desc_html: 誰でも自由にアカウントを作成できるようにします
           title: 新規登録を受け付ける
+      show_known_fediverse_at_about_page:
+        desc_html: チェックを入れるとプレビュー欄に既知の連合先全てのトゥートを表示します。外すとローカルのトゥートだけ表示します。
+        title: タイムラインプレビューに連合タイムラインを表示する
+      show_staff_badge:
+        desc_html: ユーザーページにスタッフのバッジを表示します
+        title: スタッフバッジを表示する
       require_approval:
         desc_html: アカウント作成時にモデレータの許可を求めます
         title: 登録の制限
