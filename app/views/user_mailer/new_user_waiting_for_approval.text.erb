@@ -1,0 +1,7 @@
+<%= t 'devise.mailer.new_user_waiting_for_approval.title' %>
+
+===
+
+<%=  t 'devise.mailer.new_user_waiting_for_approval.explanation', acct: @resource.account.local_username_and_domain, email: @resource.email %>
+
+=> <%= admin_account_url(@resource.account.id) %>

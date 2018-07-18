@@ -30,6 +30,9 @@ ja:
         title: 新しいメールアドレス
       new_user_waiting_for_approval:
         subject: 'Mastodon: %{acct}からの承認要求'
+        title: 新しいユーザーの承認
+        explanation: "%{acct}が新しくアカウントを作成しました。登録されたメールアドレスは%{email}です。"
+        action: ユーザーの承認
       password_change:
         explanation: パスワードが変更されました。
         extra: パスワードの変更を行っていない場合、他の誰かがあなたのアカウントにアクセスした可能性があります。すぐにパスワードを変更するか、アカウントがロックされている場合はインスタンス管理者に連絡してください。

@@ -30,6 +30,9 @@ en:
         title: New email address
       new_user_waiting_for_approval:
         subject: 'Mastodon: Approval needed for %{acct}'
+        title: New user requests your approval
+        explanation: "%{acct} has been created an account on your mastodon. The registered email address is %{email}."
+        action: Approve this user
       password_change:
         explanation: The password for your account has been changed.
         extra: If you did not change your password, it is likely that someone has gained access to your account. Please change your password immediately or contact the instance admin if you're locked out of your account.
