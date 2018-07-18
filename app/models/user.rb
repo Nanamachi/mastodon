@@ -216,7 +216,7 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && !disabled?
+    super && !disabled? && (approved? || !Setting.require_approval)
   end
 
   def setting_default_privacy
@@ -317,10 +317,6 @@ class User < ApplicationRecord
 
   def approved?
     approved_at.present?
-  end
-
-  def active_for_authentication?
-    super && (approved? || !Setting.require_approval)
   end
 
   def inactive_message

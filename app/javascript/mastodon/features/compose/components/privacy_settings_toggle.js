@@ -18,7 +18,7 @@ export default class PrivacySettingsToggle extends React.PureComponent {
 
     return (
       <div className='privacy-dropdown__federate'>
-        <SettingToggle settings={settings} settingKey={['federate']} onChange={onChange} label={federateStr} />
+        <SettingToggle settings={settings} settingPath={['federate']} onChange={onChange} label={federateStr} />
       </div>
     );
   }

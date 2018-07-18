@@ -17,7 +17,7 @@ class StatusPolicy < ApplicationPolicy
     elsif private?
       owned? || following_author? || mention_exists?
     elsif !federate?
-      !account.nil? && !blocked?
+      !current_account.nil? && !blocked?
     else
       current_account.nil? || !author_blocking?
     end
@@ -88,10 +88,10 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def federate?
-    status.federate?
+    record.federate?
   end
 
   def blocked?
-    status.account.blocking?(account)
+    record.account.blocking?(account)
   end
 end
