@@ -97,6 +97,7 @@ module Admin
         :silenced,
         :recent,
         :suspended,
+        :approval_pending,
         :username,
         :display_name,
         :email,

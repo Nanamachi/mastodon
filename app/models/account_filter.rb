@@ -47,6 +47,8 @@ class AccountFilter
       end
     when 'staff'
       accounts_with_users.merge User.staff
+    when 'approval_pending'
+      accounts_with_users.merge User.approval_pending
     else
       raise "Unknown filter: #{key}"
     end

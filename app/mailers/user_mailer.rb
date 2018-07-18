@@ -22,7 +22,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def new_user_waiting_for_approval(recipient, user, _opts = {})
+  def new_user_waiting_for_approval(recipient, user, **)
     @me       = recipient
     @resource = user
     @instance = Rails.configuration.x.local_domain

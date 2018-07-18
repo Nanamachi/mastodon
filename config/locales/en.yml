@@ -60,8 +60,10 @@ en:
       delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
+      approval_status: Approval by moderator
       approve: Approve
       approved: Approved
+      approving: Pending
       are_you_sure: Are you sure?
       avatar: Avatar
       by_domain: Domain
@@ -102,6 +104,7 @@ en:
       memorialize: Turn into memoriam
       moderation:
         all: All
+        approval_pending: Waiting Approval
         silenced: Silenced
         suspended: Suspended
         title: Moderation

@@ -50,6 +50,13 @@
               = t('admin.accounts.confirming')
               = table_link_to 'refresh', t('admin.accounts.resend_confirmation.send'), resend_admin_account_confirmation_path(@account.id), method: :post if can?(:confirm, @account.user)
         %tr
+          %th= t('admin.accounts.approval_status')
+          %td
+            - if @account.user&.approved?
+              = t('admin.accounts.approved')
+            - else
+              = t('admin.accounts.approving')
+        %tr
           %th= t('admin.accounts.login_status')
           %td
             - if @account.user&.disabled?

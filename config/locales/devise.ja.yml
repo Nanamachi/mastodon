@@ -11,7 +11,7 @@ ja:
       invalid: "%{authentication_keys}かパスワードが誤っています。"
       last_attempt: あと1回失敗するとアカウントがロックされます。
       locked: アカウントはロックされました。
-      not_approved: アカウントを使用するには管理者の承認が必要です。
+      not_approved: アカウントを使用するにはモデレータの承認が必要です。
       not_found_in_database: "%{authentication_keys}かパスワードが誤っています。"
       timeout: セッションの有効期限が切れました。続行するには再度ログインしてください。
       unauthenticated: 続行するにはログインするか、アカウントを作成してください。

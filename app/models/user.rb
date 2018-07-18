@@ -79,6 +79,7 @@ class User < ApplicationRecord
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
   scope :with_recent_ip_address, ->(value) { where(arel_table[:current_sign_in_ip].eq(value).or(arel_table[:last_sign_in_ip].eq(value))) }
   scope :approved, -> { where.not(approved_at: nil) }
+  scope :approval_pending, -> { where(approved_at: nil) }
 
   before_validation :sanitize_languages
 
