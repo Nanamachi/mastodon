@@ -23,13 +23,13 @@ en:
         extra_html: Please also check out <a href="%{terms_path}">the rules of the instance</a> and <a href="%{policy_path}">our terms of service</a>.
         subject: 'Mastodon: Confirmation instructions for %{instance}'
         title: Verify email address
-      new_user_waiting_for_approval:
-        subject: 'Mastodon: Approval needed for %{acct}'
       email_changed:
         explanation: 'The email address for your account is being changed to:'
         extra: If you did not change your email, it is likely that someone has gained access to your account. Please change your password immediately or contact the instance admin if you're locked out of your account.
         subject: 'Mastodon: Email changed'
         title: New email address
+      new_user_waiting_for_approval:
+        subject: 'Mastodon: Approval needed for %{acct}'
       password_change:
         explanation: The password for your account has been changed.
         extra: If you did not change your password, it is likely that someone has gained access to your account. Please change your password immediately or contact the instance admin if you're locked out of your account.
