@@ -6,7 +6,7 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
-import { autoPlayGif, displaySensitiveMedia } from '../initial_state';
+import { autoPlayGif, displayMedia } from '../initial_state';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
@@ -50,7 +50,11 @@ class Item extends React.PureComponent {
   handleClick = (e) => {
     const { index, onClick } = this.props;
 
-    if (e.button === 0) {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      if (this.hoverToPlay()) {
+        e.target.pause();
+        e.target.currentTime = 0;
+      }
       e.preventDefault();
       onClick(index);
     }
@@ -122,7 +126,7 @@ class Item extends React.PureComponent {
       const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
 
       const srcSet = hasSize ? `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w` : null;
-      const sizes  = hasSize ? `${displayWidth * (width / 100)}px` : null;
+      const sizes  = hasSize && (displayWidth > 0) ? `${displayWidth * (width / 100)}px` : null;
 
       const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
       const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;
@@ -154,6 +158,7 @@ class Item extends React.PureComponent {
           <video
             className='media-gallery__item-gifv-thumbnail'
             aria-label={attachment.get('description')}
+            title={attachment.get('description')}
             role='application'
             src={attachment.get('url')}
             onClick={this.handleClick}
@@ -178,8 +183,8 @@ class Item extends React.PureComponent {
 
 }
 
-@injectIntl
-export default class MediaGallery extends React.PureComponent {
+export default @injectIntl
+class MediaGallery extends React.PureComponent {
 
   static propTypes = {
     sensitive: PropTypes.bool,
@@ -189,6 +194,8 @@ export default class MediaGallery extends React.PureComponent {
     height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    defaultWidth: PropTypes.number,
+    cacheWidth: PropTypes.func,
   };
 
   static defaultProps = {
@@ -196,7 +203,8 @@ export default class MediaGallery extends React.PureComponent {
   };
 
   state = {
-    visible: !this.props.sensitive || displaySensitiveMedia,
+    visible: displayMedia !== 'hide_all' && !this.props.sensitive || displayMedia === 'show_all',
+    width: this.props.defaultWidth,
   };
 
   componentWillReceiveProps (nextProps) {
@@ -216,6 +224,7 @@ export default class MediaGallery extends React.PureComponent {
   handleRef = (node) => {
     if (node /*&& this.isStandaloneEligible()*/) {
       // offsetWidth triggers a layout, so only calculate when we need to
+      if (this.props.cacheWidth) this.props.cacheWidth(node.offsetWidth);
       this.setState({
         width: node.offsetWidth,
       });
@@ -228,8 +237,10 @@ export default class MediaGallery extends React.PureComponent {
   }
 
   render () {
-    const { media, intl, sensitive, height } = this.props;
-    const { width, visible } = this.state;
+    const { media, intl, sensitive, height, defaultWidth } = this.props;
+    const { visible } = this.state;
+
+    const width = this.state.width || defaultWidth;
 
     let children;
 

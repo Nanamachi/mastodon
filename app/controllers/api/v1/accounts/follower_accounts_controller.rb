@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read }
+  before_action -> { doorkeeper_authorize! :read, :'read:accounts' }
   before_action :set_account
   after_action :insert_pagination_headers
 
@@ -25,7 +25,7 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
   end
 
   def default_accounts
-    Account.includes(:active_relationships).references(:active_relationships)
+    Account.includes(:active_relationships, :account_stat).references(:active_relationships)
   end
 
   def paginated_follows

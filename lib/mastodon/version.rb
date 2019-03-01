@@ -9,7 +9,7 @@ module Mastodon
     end
 
     def minor
-      4
+      7
     end
 
     def patch
@@ -32,8 +32,12 @@ module Mastodon
       [to_a.join('.'), flags].join
     end
 
+    def repository
+      'c2bdon/mastodon'
+    end
+
     def source_base_url
-      'https://github.com/nanamachi/mastodon'
+      "https://github.com/#{repository}"
     end
 
     # specify git tag or commit hash here

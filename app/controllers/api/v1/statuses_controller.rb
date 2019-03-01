@@ -3,8 +3,8 @@
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
 
-  before_action :authorize_if_got_token, except:            [:create, :destroy]
-  before_action -> { doorkeeper_authorize! :write }, only:  [:create, :destroy]
+  before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :destroy]
+  before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :destroy]
   before_action :require_user!, except:  [:show, :context, :card]
   before_action :set_status, only:       [:show, :context, :card]
 
@@ -17,8 +17,7 @@ class Api::V1::StatusesController < Api::BaseController
   CONTEXT_LIMIT = 4_096
 
   def show
-    cached  = Rails.cache.read(@status.cache_key)
-    @status = cached unless cached.nil?
+    @status = cache_collection([@status], Status).first
     render json: @status, serializer: REST::StatusSerializer
   end
 
@@ -46,17 +45,18 @@ class Api::V1::StatusesController < Api::BaseController
 
   def create
     @status = PostStatusService.new.call(current_user.account,
-                                         status_params[:status],
-                                         status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
+                                         text: status_params[:status],
+                                         thread: status_params[:in_reply_to_id].blank? ? nil : Status.find(status_params[:in_reply_to_id]),
                                          media_ids: status_params[:media_ids],
                                          sensitive: status_params[:sensitive],
                                          spoiler_text: status_params[:spoiler_text],
                                          federate: status_params[:federate],
                                          visibility: status_params[:visibility],
+                                         scheduled_at: status_params[:scheduled_at],
                                          application: doorkeeper_token.application,
                                          idempotency: request.headers['Idempotency-Key'])
 
-    render json: @status, serializer: REST::StatusSerializer
+    render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
   end
 
   def destroy
@@ -79,15 +79,10 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def status_params
-    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :federate, :visibility, media_ids: [])
+    params.permit(:status, :in_reply_to_id, :sensitive, :spoiler_text, :federate, :visibility, :scheduled_at, media_ids: [])
   end
 
   def pagination_params(core_params)
     params.slice(:limit).permit(:limit).merge(core_params)
-  end
-
-  def authorize_if_got_token
-    request_token = Doorkeeper::OAuth::Token.from_request(request, *Doorkeeper.configuration.access_token_methods)
-    doorkeeper_authorize! :read if request_token
   end
 end

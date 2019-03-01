@@ -8,6 +8,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
   before_action :set_instance_presenter, only: [:new, :create, :update]
+  before_action :set_body_classes, only: [:new, :create, :edit, :update]
 
   prepend_after_action :request_approval, only: [:create]
 
@@ -27,7 +28,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
     resource.locale      = I18n.locale
     resource.invite_code = params[:invite_code] if resource.invite_code.blank?
+    resource.agreement   = true
 
+    resource.current_sign_in_ip = request.remote_ip if resource.current_sign_in_ip.nil?
     resource.build_account if resource.account.nil?
   end
 
@@ -39,6 +42,16 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(_resource)
     new_user_session_path
+  end
+
+  def after_sign_in_path_for(_resource)
+    set_invite
+
+    if @invite&.autofollow?
+      short_account_path(@invite.user.account)
+    else
+      super
+    end
   end
 
   def after_inactive_sign_up_path_for(_resource)
@@ -69,6 +82,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new
+  end
+
+  def set_body_classes
+    @body_classes = %w(edit update).include?(action_name) ? 'admin' : 'lighter'
   end
 
   def set_invite
