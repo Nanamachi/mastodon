@@ -448,6 +448,7 @@ class Status < ApplicationRecord
     self.visibility = (account.locked? ? :private : :public) if visibility.nil?
     self.visibility = reblog.visibility if reblog?
     self.sensitive  = false if sensitive.nil?
+    self.federate   = true if federate.nil?
   end
 
   def set_conversation

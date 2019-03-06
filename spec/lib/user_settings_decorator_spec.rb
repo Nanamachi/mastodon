@@ -35,6 +35,13 @@ describe UserSettingsDecorator do
       expect(user.settings['default_sensitive']).to eq true
     end
 
+    it 'updates the user settings value for unfederate' do
+      values = { 'setting_default_federate' => '0' }
+
+      settings.update(values)
+      expect(user.settings['default_federate']).to eq false
+    end
+
     it 'updates the user settings value for unfollow modal' do
       values = { 'setting_unfollow_modal' => '0' }
 

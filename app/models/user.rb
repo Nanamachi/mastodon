@@ -101,7 +101,7 @@ class User < ApplicationRecord
 
   has_many :session_activations, dependent: :destroy
 
-  delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
+  delegate :auto_play_gif, :default_sensitive, :default_federate, :unfollow_modal, :boost_modal, :delete_modal,
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network,
            :expand_spoilers, :default_language, :aggregate_reblogs, to: :settings, prefix: :setting, allow_nil: false
 
@@ -150,10 +150,6 @@ class User < ApplicationRecord
 
   def staff?
     admin? || moderator?
-  end
-
-  def setting_default_federate
-    settings.default_federate
   end
 
   def role
@@ -229,10 +225,6 @@ class User < ApplicationRecord
     self.otp_required_for_login = false
     otp_backup_codes&.clear
     save!
-  end
-
-  def active_for_authentication?
-    super && !disabled? && (approved? || !Setting.require_approval)
   end
 
   def setting_default_privacy

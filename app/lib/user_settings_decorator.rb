@@ -19,6 +19,7 @@ class UserSettingsDecorator
     user.settings['interactions']        = merged_interactions if change?('interactions')
     user.settings['default_privacy']     = default_privacy_preference if change?('setting_default_privacy')
     user.settings['default_sensitive']   = default_sensitive_preference if change?('setting_default_sensitive')
+    user.settings['default_federate']    = default_federate_preference if change?('setting_default_federate')
     user.settings['default_language']    = default_language_preference if change?('setting_default_language')
     user.settings['unfollow_modal']      = unfollow_modal_preference if change?('setting_unfollow_modal')
     user.settings['boost_modal']         = boost_modal_preference if change?('setting_boost_modal')
@@ -48,6 +49,10 @@ class UserSettingsDecorator
 
   def default_sensitive_preference
     boolean_cast_setting 'setting_default_sensitive'
+  end
+
+  def default_federate_preference
+    boolean_cast_setting 'setting_default_federate'
   end
 
   def unfollow_modal_preference

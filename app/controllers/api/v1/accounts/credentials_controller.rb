@@ -30,6 +30,7 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
     source_params = params.require(:source)
 
     {
+      'setting_default_federate' => source_params.fetch(:federate, @account.user.setting_default_federate),
       'setting_default_privacy' => source_params.fetch(:privacy, @account.user.setting_default_privacy),
       'setting_default_sensitive' => source_params.fetch(:sensitive, @account.user.setting_default_sensitive),
       'setting_default_language' => source_params.fetch(:language, @account.user.setting_default_language),
