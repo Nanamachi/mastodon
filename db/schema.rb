@@ -356,9 +356,9 @@ ActiveRecord::Schema.define(version: 2019_01_17_114553) do
   create_table "mutes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "hide_notifications", default: true, null: false
     t.bigint "account_id", null: false
     t.bigint "target_account_id", null: false
-    t.boolean "hide_notifications", default: true, null: false
     t.index ["account_id", "target_account_id"], name: "index_mutes_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_mutes_on_target_account_id"
   end
@@ -653,12 +653,12 @@ ActiveRecord::Schema.define(version: 2019_01_17_114553) do
     t.string "otp_backup_codes", array: true
     t.string "filtered_languages", default: [], null: false, array: true
     t.bigint "account_id", null: false
+    t.datetime "approved_at"
     t.boolean "disabled", default: false, null: false
     t.boolean "moderator", default: false, null: false
     t.bigint "invite_id"
     t.string "remember_token"
     t.string "chosen_languages", array: true
-    t.datetime "approved_at"
     t.bigint "created_by_application_id"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
