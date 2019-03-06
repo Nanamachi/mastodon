@@ -74,6 +74,8 @@ class Api::BaseController < ApplicationController
       render json: { error: 'Your login is currently disabled' }, status: 403
     elsif !current_user.confirmed?
       render json: { error: 'Email confirmation is not completed' }, status: 403
+    elsif !current_user.approved?
+      render json: { error: 'Your account is not approved by moderator yet' }, status: 403
     else
       set_user_activity
     end

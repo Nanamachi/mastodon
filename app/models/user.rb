@@ -227,6 +227,10 @@ class User < ApplicationRecord
     save!
   end
 
+  def active_for_authentication?
+    super && (approved? || !Setting.require_approval)
+  end
+
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
   end

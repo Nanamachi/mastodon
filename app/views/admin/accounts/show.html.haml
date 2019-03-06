@@ -92,6 +92,7 @@
                 = t('admin.accounts.approved')
               - else
                 = t('admin.accounts.approving')
+            %td= table_link_to 'refresh', t('admin.accounts.approve'), admin_account_approval_path(@account.id), method: :post if !@account.user&.approved?
 
           %tr
             %th= t('admin.accounts.login_status')

@@ -151,6 +151,22 @@ RSpec.describe Auth::SessionsController, type: :controller do
         end
       end
 
+      context 'with an unapproved account' do
+        before do
+          Setting.require_approval = true
+
+          request.headers['Accept-Language'] = accept_language
+          post :create, params: { user: { email: unconfirmed_user.email, password: unconfirmed_user.password } }
+        end
+
+        let(:unconfirmed_user) { user.tap { |u| u.update!(approved_at: nil) } }
+        let(:accept_language) { 'ja' }
+
+        it 'shows a translated login error' do
+          expect(flash[:alert]).to eq(I18n.t('devise.failure.not_approved', locale: accept_language))
+        end
+      end
+
       context 'using an unconfirmed password' do
         before do
           request.headers['Accept-Language'] = accept_language
